@@ -41,5 +41,6 @@ public class LoginPage {
     public LoginPage submitLoginWithFailure(){
         loginBtn.click();
         return this;
+
     }
 }
