@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class Lab_2_WebDriver_Test {
+public class WebDriver_Test {
 
     @Test
     public void playWithWebDriver() {

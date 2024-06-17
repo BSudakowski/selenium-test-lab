@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 import java.util.List;
 
-public class Lab_5_IncorrectEmail_Test {
+public class IncorrectEmail_Test {
 
     @Test
     public void incorrectLoginTestWrongEmail(){

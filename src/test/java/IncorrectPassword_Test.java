@@ -6,11 +6,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
-public class Lab_3_CorrectLogin_Test {
+public class IncorrectPassword_Test {
 
     @Test
-    public void correctLoginTest(){
+    public void incorrectPasswordTest (){
         //Arrange
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -20,16 +21,15 @@ public class Lab_3_CorrectLogin_Test {
         WebElement emailTxt = driver.findElement(By.cssSelector("#Email"));
         emailTxt.sendKeys("test@test.com");
         WebElement passwordTxt = driver.findElement(By.cssSelector("#Password"));
-        passwordTxt.sendKeys("Test1!");
+        passwordTxt.sendKeys("Tes");
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         loginBtn.click();
-        WebElement welcomeElm = driver.findElement(By.cssSelector(".profile_info"));
         //Assert
-        Assert.assertTrue(welcomeElm.isDisplayed());
-        Assert.assertTrue(welcomeElm.getText().contains("Welcome"));
-
-        driver.quit();
-
-
+        List<WebElement> validationErrors = driver.findElements(By.cssSelector(".validation-summary-errors>ul>li"));
+        boolean doesErrorExists = false;
+        doesErrorExists = validationErrors
+                .stream()
+                .anyMatch(validationError -> validationError.getText().equals("Invalid login attempt."));
+        Assert.assertTrue(doesErrorExists);
     }
 }
