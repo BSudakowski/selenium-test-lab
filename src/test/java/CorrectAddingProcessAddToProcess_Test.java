@@ -7,10 +7,10 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class CorrectLogin_Test {
+public class CorrectAddingProcessAddToProcess_Test {
 
     @Test
-    public void correctLoginTest(){
+    public void correctAddingProcess() {
         //Arrange
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -23,13 +23,19 @@ public class CorrectLogin_Test {
         passwordTxt.sendKeys("Test1!");
         WebElement loginBtn = driver.findElement(By.cssSelector("button[type=submit]"));
         loginBtn.click();
-        WebElement welcomeElm = driver.findElement(By.cssSelector(".profile_info"));
+        driver.findElement(By.linkText("Workspace")).click();
+        driver.findElement(By.linkText("Processes")).click();
+        driver.findElement(By.linkText("Add new process")).click();
+        driver.findElement(By.id("Name")).sendKeys("test123");
+        driver.findElement(By.id("Description")).sendKeys("test123");
+        driver.findElement(By.id("Notes")).sendKeys("test123");
+        driver.findElement(By.cssSelector("input[type=submit]")).click();
         //Assert
-        Assert.assertTrue(welcomeElm.isDisplayed());
-        Assert.assertTrue(welcomeElm.getText().contains("Welcome"));
+        WebElement pageConfirm = driver.findElement(By.cssSelector(".inner-message"));
+        Assert.assertTrue(pageConfirm.isDisplayed());
+        Assert.assertTrue(pageConfirm.getText().contains("Process has been created"));
 
         driver.quit();
-
 
     }
 }

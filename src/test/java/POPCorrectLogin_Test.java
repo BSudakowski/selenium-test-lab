@@ -14,7 +14,7 @@ public class POPCorrectLogin_Test {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.manage().window().maximize();
-        driver.get("http://teja.zarz.agh.edu.pl");
+        driver.get("http://localhost:4444");
 
         LoginPage loginPage = new LoginPage(driver);
         loginPage.typeEmail("test@test.com");
